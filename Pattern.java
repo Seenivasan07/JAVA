@@ -462,8 +462,10 @@ class Pat14 {
   4 3 2 1 2 3 4
 5 4 3 2 1 2 3 4 5
  */
-class Pat15 {
-    public static void main(String[] args) {
+class Pat15 
+{
+    public static void main(String[] args) 
+    {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Enter the number of rows: ");
         int n = scanner.nextInt();
@@ -473,7 +475,7 @@ class Pat15 {
         {
             count = 1+i;
             add = 1;
-            for (int j = 1; j < = n+i; j++)
+            for (int j = 0; j<n+i; j++)
             {
                if(j<(n-i-1))
                {
@@ -489,9 +491,12 @@ class Pat15 {
                }   
             }
             System.out.println("");
-        }     
+        }
     }
 }
+
+
+
 
 
 
