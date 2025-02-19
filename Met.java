@@ -57,3 +57,64 @@ class Met2
         }
     }
 }
+class Met3
+{
+    static String met(String str)
+    {
+        char a = str.charAt(0);
+        char b = str.charAt(str.length()-1);
+        return b + str.substring(1,(str.length()-1)) + a;
+    }
+    public static void main(String[]args)
+    {
+        String str = "java";
+        System.out.println(met(str));
+    }
+}
+class Met4
+{
+static boolean met(String str) 
+  {
+    if(str.length()>1)
+    {
+      if (str.substring(0,2).equals("hi"))
+      return true;
+    }
+    return false;
+  }
+  public static void main(String[]args)
+  {
+    Scanner java = new Scanner(System.in);
+    System.out.println("Enter any text: ");
+    String str = java.nextLine();
+    System.out.println(met(str));
+  }
+}
+class Met5
+{
+     static boolean met(String str) {
+        int count=1;
+        if(str.length()>1)
+        {
+          for(int i = 0;i<str.length();i++)
+          {
+            if(str.charAt(i)=='e')
+            {
+              count++;
+            }
+          }
+        }
+        if(count>=1 && count<=3)
+        {
+          return true;
+        }
+        return false;
+      }
+      public static void main(String[]args)
+      {
+        Scanner java = new Scanner(System.in);
+        System.out.println("Enter the string: ");
+        String str = java.nextLine();
+        System.out.println(met(str));
+      }
+}
