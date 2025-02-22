@@ -770,3 +770,35 @@ class Arr29
         System.out.println(count);
     }
 }
+//Find the maximum element in the two dimensional array
+class Arr30
+{
+    public static void main(String[] args)
+    {
+        Scanner java = new Scanner(System.in);
+        System.out.println("Enter the size of row and column: ");
+        int row = java.nextInt();
+        int col = java.nextInt();
+        int[][] arr = new int[row][col];
+        int max = arr[0][0];
+        System.out.println("Enter the values for the array: ");
+        for(int i=0;i<row;i++)
+        {
+            for(int j = 0;j<col;j++)
+            {
+                arr[i][j] = java.nextInt();
+            }
+        }
+        for(int i = 0;i<row;i++)
+        {
+            for(int j = 0;j<col;j++)
+            {
+                if(arr[i][j]>max)
+                {
+                    max = arr[i][j];
+                }
+            }
+        } 
+        System.out.println("The maximum element in the given array: "+ max);  
+    }
+}
