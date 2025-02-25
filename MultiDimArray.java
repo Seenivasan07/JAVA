@@ -438,6 +438,7 @@ class mul11
             }
             System.out.println("");
         }
+
     }
 }
 /* TO PRINT THE MATRIX IN SNAKE FORMAT
@@ -484,4 +485,124 @@ class mul12
             System.out.println("");
         }
     }
+}
+/*To print the given matrix in spiral format...
+1  2  3  4
+12 13 14 5
+11 16 15 6
+10 9  8  7
+*/
+class mul13
+{
+    public static void main(String[]args)
+    {
+        int[][]arr = {{1,2,3,4}, {12,13,14,5},{11,16,15,6},{10,9,8,7}};
+        int mincol= 0, minrow= 0, maxcol = arr[0].length-1, maxrow = arr.length-1;
+        int count = 0;
+        while(count<(arr.length*arr[0].length))
+        {
+        for(int j = mincol;j<=maxcol;j++)
+        {
+            System.out.print(arr[minrow][j] + " ");
+            count++;
+        }
+        for(int i = minrow+1;i<=maxrow;i++)
+        {
+            System.out.print(arr[i][maxcol]+" ");
+            count++;
+        }
+        for(int j = maxcol-1;j>=mincol;j--)
+        {
+            System.out.print(arr[maxrow][j]+" ");
+            count++;
+        }
+        for(int i = maxrow-1;i>minrow;i--)
+        {
+            System.out.print(arr[i][mincol]+" ");
+            count++;
+        }
+        mincol++;
+        minrow++;
+        maxcol--;
+        maxrow--;
+    }
+    }
+}
+/*To print the given matrix in snake format...
+1  2  3  4
+8  7  6  5
+9  10 11 12
+16 15 14 13
+*/
+class mul14
+{
+    public static void main(String[]args)
+    {
+        int[][]arr = {{1,2,3,4}, {8,7,6,5},{9,10,11,12},{16,15,14,13}};
+        int mincol= 0, minrow= 0, maxcol = arr.length-1, maxrow = arr[0].length-1;
+        int total = arr.length * arr[0].length; 
+        int count = 0;
+        while(count<total)
+        {
+            for(int j = mincol;j<=maxcol;j++)
+            {
+                System.out.print(arr[minrow][j]+" ");
+                count++;
+            }
+            minrow++;
+            for(int j = maxcol;j>=mincol;j--)
+            {
+                System.out.print(arr[minrow][j]+" ");
+                count++;
+            }
+            minrow++;
+        }
+    }
+}
+/*Reverse Spiral Order Traversal
+1  2  3  4
+12 13 14 5
+11 16 15 6
+10 9  8  7
+*/
+class mul15 
+{
+    public static void main(String[]args)
+    {
+    int[][] arr = {{1,2,3,4},{12,13,14,5},{11,16,15,6},{10,9,8,7}};
+    int total = arr.length*arr[0].length;
+    int count = 0, minrow = 0, mincol = 0, maxcol = arr[0].length - 1, maxrow = arr.length - 1;
+    int[]revarr = new int[total];
+    while(count < arr.length*arr[0].length)
+    {
+    for(int j = mincol;j<=maxcol;j++)
+    {
+        revarr[count] = arr[minrow][j];
+        count ++;
+    }
+    for(int i = minrow+1;i<=maxrow;i++)
+    {
+        revarr[count] = arr[i][maxcol];
+        count++;
+    }
+    for(int j = maxcol-1;j>=mincol;j--)
+    {
+        revarr[count] = arr[maxrow][j];
+        count ++;
+    }
+    for(int i = maxrow-1;i>minrow;i--)
+    {
+        revarr[count] = arr[i][mincol];
+        count++;
+    }
+    minrow++;
+    mincol++;
+    maxrow--;
+    maxcol--;
+    }
+    for(int i = total - 1;i>=0;i--)
+    {
+        System.out.print(revarr[i] + " ");
+    }
+}
 }
