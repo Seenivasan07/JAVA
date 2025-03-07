@@ -1,5 +1,5 @@
 import java.util.Scanner;
-public class multi
+public class mularrtest
 {
     public static void main(String[]args)
     {
