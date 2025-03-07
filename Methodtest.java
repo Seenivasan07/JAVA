@@ -1,5 +1,5 @@
 import java.util.Scanner;
-public class MethodTest
+public class Methodtest
 {
     public static void main(String[]args)
     {

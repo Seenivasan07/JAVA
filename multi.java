@@ -1,5 +1,5 @@
 import java.util.Scanner;
-public class mularrtest 
+public class multi
 {
     public static void main(String[]args)
     {
@@ -48,7 +48,7 @@ class mularr2
     }
     public static void main(String[]args)
     {
-        System.out.println("Addition in matrix can be done, only when the size of matrix A + \n + and the size of the matrix B is equal.So, assign the size correctly.");
+        System.out.println("Addition in matrix can be done, only when the size of matrix A "+ "\n" + "and the size of the matrix B is equal.So, assign the size correctly.");
         Scanner java = new Scanner(System.in);
         System.out.println("Enter the size for the row and column: ");
         int row = java.nextInt();
@@ -104,24 +104,27 @@ class mularr3
     {
         System.out.println("Multiplication in matrix can be done, only when the column size of matrix A \n " + "and the row size of the matrix B is equal.So, assign the size correctly.\n");
         Scanner java = new Scanner(System.in);
-        System.out.println("Enter the size for the row and column: ");
-        int row = java.nextInt();
-        int col = java.nextInt();
-        int[][] A = new int[row][col];
-        int[][] B = new int[row][col];
-        int[][] C = new int[row][col];
+        System.out.println("Enter the size for the row1 and column1: ");
+        int row1 = java.nextInt();
+        int col1 = java.nextInt();
+        System.out.println("Enter the size for the row2 and column2: ");
+        int row2 = java.nextInt();
+        int col2 = java.nextInt();
+        int[][] A = new int[row1][col1];
+        int[][] B = new int[row2][col2];
+        int[][] C = new int[row1][col2];
         System.out.println("Enter the value for the matrix A: ");
-        for(int i = 0;i<row;i++)
+        for(int i = 0;i<row1;i++)
         {
-            for(int j = 0;j<col;j++)
+            for(int j = 0;j<col1;j++)
             {
                 A[i][j] = java.nextInt();
             }
         }
         System.out.println("Enter the value for the matrix B: ");
-        for(int i = 0;i<row;i++)
+        for(int i = 0;i<row2;i++)
         {
-            for(int j = 0;j<col;j++)
+            for(int j = 0;j<col2;j++)
             {
                 B[i][j] = java.nextInt();
             }
@@ -147,7 +150,6 @@ class mularr4
         int row = java.nextInt();
         int col = java.nextInt();
         int[][] arr = new int[row][col];
-        int[][] dub = new int[row][col];
         System.out.println("Enter the value for the matrix:");
         for(int i = 0;i<row;i++)
         {
@@ -157,18 +159,18 @@ class mularr4
                 System.out.print(arr[i][j]+ " ");
             }
             System.out.println(" ");
-        }
+        } 
         System.out.println("After Getting transposed: ");
         for(int j = 0;j<col;j++)
         {
             for(int i = 0;i<row;i++)
             {
-                dub[j][i] = arr[i][j];
-                System.out.print(dub[j][i]+ " ");
+                System.out.print(arr[i][j]+ " ");
             }
-            System.out.println(" ");
+            System.out.println("");
         }
-    }
+       
+}
 }
 //Find maximum element in the given array
 class mularr5
@@ -180,7 +182,6 @@ class mularr5
         {
             if(max<arr[i])
             {
-                int temp = max;
                 max = arr[i];
             }
         }
@@ -209,8 +210,8 @@ class mularr6
         {
             if(arr[i] ==  m)
             {
-                System.out.println("The element" + m + "is in the position: "+ i);
-                break;
+                System.out.println("The element " + m + " is in the position: "+ i);
+                continue;
             }
         }
         return 0;
@@ -277,7 +278,7 @@ class mularr8
         int row = java.nextInt();
         int col = java.nextInt();
         int[][] arr = new int[row][col];
-        int[][] dub = new int[row][col];
+        int[][] trans = new int[col][row];
         System.out.println("Enter the value for the matrix:");
         for(int i = 0;i<row;i++)
         {
@@ -287,34 +288,33 @@ class mularr8
             }
         }
         System.out.println("After Getting transposed: ");
-        for(int j = 0;j<col;j++)
+        for(int i = 0;i<col;i++)
         {
-            for(int i = 0;i<row;i++)
+            for(int j = 0;j<row;j++)
             {
-                dub[j][i] = arr[i][j];
-                System.out.print(dub[j][i]+ " ");
+                trans[i][j] = arr[j][i];
+                System.out.print(trans[i][j] + " ");
             }
             System.out.println(" ");
         }
         System.out.println("After getting rotated 90 degress: ");
-        for(int i = 0;i<col;i++)
+        for(int i = 0;i<trans.length;i++)
         {
-            for(int j = 0, k = row-1;j<k;j++,k--)
+            for(int j = 0, k = trans[i].length-1;j<k;j++,k--)
             {
-                int temp = dub[i][j];
-                dub[i][j] = dub[i][k];
-                dub[i][k] = temp;
+                int temp = trans[i][j];
+                trans[i][j] = trans[i][k];
+                trans[i][k] = temp;
             }
         }
-        for(int i = 0;i<row;i++)
+        for(int i = 0;i<trans.length;i++)
         {
-            for(int j = 0;j<col;j++)
+            for(int j = 0;j<trans[i].length;j++)
             {
-                System.out.print(dub[i][j]+ " ");
+                System.out.print(trans[i][j]+ " ");
             }
             System.out.println("");
         }
-    
     }
 }
 //Function to merge two arrays and return the combined array
@@ -344,7 +344,8 @@ class mularr9
         int[] a = new int[n];
         System.out.println("Enter the size for  the array 2: ");
         int m = java.nextInt();
-        int[] b = new int[m];
+        int[]b = new int[m];
+        int[] c = new int[n+m];
         System.out.println("Enter the values for array1");
         for(int i = 0;i<n;i++)
         {
@@ -358,8 +359,8 @@ class mularr9
         System.out.println("Enter the values for array2");
       
         //System.out.print("The combined array of a and b: " + met(a,b));...if we directly print the array, it prints its address instead of value;
-        int []c = met(a,b);
-        for(int i:c)
+        int []res = met(a,b);
+        for(int i:res)
         {
             System.out.print(i + " ");
         }
@@ -516,3 +517,4 @@ class mularr13
         }
     }
 }
+
