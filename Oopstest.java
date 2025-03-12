@@ -68,11 +68,14 @@ class AddressBook
 {
     private String[] Contactname;
     private String[] Contactnumber;
-    private int count = 0;
+    private int count = 1;
     public AddressBook(int size)
     {
         this.Contactname = new String[size];
         this.Contactnumber = new String[size];
+        this.Contactname[0] = "zoho";
+        this.Contactnumber[0] = "9876543210";
+
     }
     public void addcontact(String contname, String contnumber)
     {
@@ -101,17 +104,20 @@ class AddressBook
     }
     public void searchcontact(String contname)
     {
+        boolean found = false;
         for(int i = 0;i<count;i++)
         {
             if(contname.equals(Contactname[i]))
             {
                 System.out.println(Contactname[i]);
                 System.out.println(Contactnumber[i]);
+                found = true;
                 break;
             }
-            else{
-                System.out.println("Notfound");
-            }
+        }
+        if(found==false)
+        {
+            System.out.println("Contact is not found..");
         }
     }
 }
@@ -276,78 +282,151 @@ class Circle
 //Write a Bank Acccount class with attributes account number, holder name, and balance. Add methods to deposit and withdraw money.
 class BankAccount
 {
-    private String Account_Number;
-    public  String AccountHolder_Name;
-    private double Balance;
-    public BankAccount(String Accno, String name, double balance)
+    private String[] Account_Number;
+    public  String[] AccountHolder_Name;
+    private double[] Balance;
+    public BankAccount(int size, String accno, String name, double balance)
     {
-        this.Account_Number = Accno;
-        this.AccountHolder_Name = name;
-        this.Balance = balance;
+        Account_Number= new String[size];
+        AccountHolder_Name = new String[size];
+        Balance = new double[size];
+        this.Account_Number[0] = accno;
+        this.AccountHolder_Name[0] = name;
+        this.Balance[0] =balance;
     }
-    private void Deposit(double amount)
+    private void Deposit(String name, String accno, double amount)
     {
-        Balance+=amount;
-        System.out.println("The Amount Deposited Successfully!!!\t Balance: "+ Balance);
-    }
-    public void todeposit(double amount)
-    {
-        Deposit(amount);
-    }
-    private void withdraw(double amount)
-    {
-        if(amount<=Balance)
+        boolean found = false;
+        for(int i = 0;i<Account_Number.length;i++)
         {
-            Balance-=amount;
-            System.out.println("Amount get withdraw: "+amount+"\t Balance: "+Balance);
+            if(accno.equals(Account_Number[i]) && name.equals(AccountHolder_Name[i]))
+            {
+                Balance[i]+=amount;
+                System.out.println("The Amount Deposited Successfully!!!\t Balance: "+ Balance[i]);
+                found = true;
+                break;
+            }
         }
-        else
+        if(found == false)
         {
-            System.out.println("Insufficient Balance!!!\rYour Balance: "+Balance);
+            System.out.println("Please Enter the Credentials Correctly!!!");
         }
+        return;
     }
-    public void towithdraw(double amount)
+    public void todeposit(String name, String accno, double amount)
     {
-        withdraw(amount);
+        Deposit(name, accno, amount);
+        return;
     }
-    public double getBalance()
+    private void withdraw(String name, String accno, double amount)
     {
-        return Balance;
+        boolean found = false;
+        for(int i = 0;i<Account_Number.length;i++)
+        {
+            if(accno.equals(Account_Number[i]) && name.equals(AccountHolder_Name[i]))
+            {
+                if(amount<=Balance[i])
+                {
+                Balance[i]-=amount;
+                System.out.println("The Amount Withdrawn: "+ amount +"\t Balance: "+ Balance[i]);
+                found = true;
+                break;
+                }
+                else
+                {
+                    System.out.println("You have insufficient Balance: "+ Balance[i]);  
+                    found = true;
+                    break;
+                }
+            }
+        }
+        if(found == false)
+        {
+            System.out.println("Please Enter the Credentials Correctly!!!");
+        }
+        return;
     }
+    public void towithdraw(String name, String accno, double amount)
+    {
+        withdraw(name, accno, amount);
+        return;
+    }
+    public void getBalance(String name, String accno)
+    {
+        boolean found = false;
+        for(int i = 0;i<Account_Number.length;i++)
+        {
+            if(accno.equals(Account_Number[i]) && name.equals(AccountHolder_Name[i]))
+            {
+                System.out.println("Balance: "+Balance[i]);
+                found = true;
+                break;
+            }
+        }
+        if(found == false)
+        {
+            System.out.println("Please Enter the Credentials Correctly: ");
+        }
+        return;
+    }  
 }
 class Bank
 {
     public static void main(String[]args)
     {
+        String name, accno;
+        double amount;
+        BankAccount obj = new BankAccount(4, "Z1234", "Zoho", 20000);
         Scanner java = new Scanner(System.in);
-        System.out.println("Enter the Account Holder Name: ");
-        String name = java.nextLine();
-        System.out.println("Enter the Account No: ");
-        String accno = java.nextLine();
-        System.out.println("Enter the Balance: ");
-        double balance = java.nextDouble();
-        BankAccount obj = new BankAccount(accno, name, balance);
-        System.out.println("Enter \"1\" to Deposit or Enter \"2\" to Withdraw or Enter \"3\" to view balance: ");
+        while(true)
+        {
+        System.out.println("Enter \"1\" to Deposit or Enter \"2\" to Withdraw or Enter \"3\" to view balance or Enter \"4\" to EXIT:");
         int choice = java.nextInt();
-        if(choice == 1)
+        java.nextLine();
+        switch(choice)
         {
+        case 1:
+        {
+          
+            System.out.println("Enter the Account Holder Name: ");
+            name = java.nextLine();
+            System.out.println("Enter the Account No: ");
+            accno = java.nextLine();
             System.out.println("Enter the amount to Deposit: ");
-            double amount = java.nextDouble();
-            obj.todeposit(amount);
+            amount = java.nextDouble();
+            obj.todeposit(name, accno, amount);
+            break;
         }
-        else if(choice == 2)
+        case 2:
         {
+            System.out.println("Enter the Account Holder Name: ");
+            name = java.nextLine();
+            System.out.println("Enter the Account No: ");
+            accno = java.nextLine();
             System.out.println("Enter the amount to Withdraw: ");
-            double amount = java.nextDouble();
-            obj.towithdraw(amount);
+            amount = java.nextDouble();
+            obj.towithdraw(name, accno, amount);
+            break;
         }
-        else if(choice == 3)
+        case 3:
         {
-            System.out.println("Available Balance: "+ obj.getBalance());
+            System.out.println("Enter the Account Holder Name: ");
+            name = java.nextLine();
+            System.out.println("Enter the Account No: ");
+            accno = java.nextLine();
+            obj.getBalance(name, accno);
+            break;
         }
-        else
+        case 4:
+        {
+            System.out.println("Shutting Down!!..");
+            return;
+        }
+        default: 
         {
             System.out.println("Please Press the Valid Option!!!!");
+        }
+        }
         }
     }
 }
