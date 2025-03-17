@@ -1013,6 +1013,41 @@ class Pat28
         }
     }
 }
+/*
+1 2 3 4 5
+4 3 2 1
+1 2 3
+2 1
+1
+ */
+class Pat29
+{
+    public static void main(String[]args)
+    {
+        Scanner java = new Scanner(System.in);
+        System.out.println("Enter the number: ");
+        int n = java.nextInt();
+        for(int i = 1;i<=n;i++)
+        {
+            if(i%2!=0)
+            {
+            for(int j = 1;j<=n-i+1;j++)
+            {
+                System.out.print(j + " ");
+            }
+            System.out.println("");
+            }
+            else if(i%2==0)
+            {
+            for(int j = n-i+1;j>=1;j--)
+            {
+                System.out.print(j + " ");
+            }
+            System.out.println("");
+            }
+        }
+    }
+}
 
 
 
