@@ -456,9 +456,8 @@ class Fh14 // appending the data with the existing ones...
 public static void main(String[] args) {
     try {
         File obj = new File("D:\\Java\\filehand.txt");
-        BufferedWriter r = new BufferedWriter(new FileWriter(obj, true)); // while appending you have to pass "True" to append if not
-        r.newLine();                                                             // default it take it as "False" and replace the existing ones..
-        r.append("i am from zoho");
+        BufferedWriter r = new BufferedWriter(new FileWriter(obj, true)); // while appending you have to pass "True" to append if not                                                             // default it take it as "False" and replace the existing ones..
+        r.write("\ni am from zoho");
         System.out.println("The file has been appended...");
         r.close();
     } catch (Exception e) {

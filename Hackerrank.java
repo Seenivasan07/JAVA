@@ -44,5 +44,5 @@ class Sol2
         }       
     }
 }
-//We use , , and  to produce some series :
+
 
