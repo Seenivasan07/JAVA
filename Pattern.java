@@ -1048,6 +1048,33 @@ class Pat29
         }
     }
 }
+/*
+1 6 
+2 7 11 
+3 8 12 15 
+4 9 13 16 18 
+5 10 14 17 19 20
+ */
+class Pat30
+{
+    public static void main(String[]args)
+    {
+        Scanner java = new Scanner(System.in);
+        System.out.println("Enter the number of rows: ");
+        int n = java.nextInt();
+        int num;
+        for(int i=1;i<=n;i++)
+        {
+            num = i;
+            for(int j=0;j<(i+1);j++)
+            {
+                System.out.print(num + " ");
+                num+=(n-j);
+            }
+            System.out.println("");
+        }
+    }
+}
 
 
 

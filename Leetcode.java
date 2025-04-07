@@ -174,32 +174,67 @@ class Plus
     }
 }
 
-
-class Animal {
-    void makeSound() {
-        System.out.println("Animal makes a sound");
+//13. Roman to Integer
+class Roman
+{
+    static int rom(String s)
+    {
+        HashMap<Character,Integer>r =new HashMap<>();
+        r.put('I',1);
+        r.put('V',5);
+        r.put('X',10);
+        r.put('L', 50);
+        r.put('C', 100);
+        r.put('D', 500);
+        r.put('M', 1000);
+        
+        int tot = 0;
+        int preval = 0;
+        for(int i = s.length()-1;i>=0;i--)
+        {
+            int val = r.get(s.charAt(i));
+            if(val<preval)
+            {
+                tot-=val;
+            }
+            else{
+                tot+=val;
+            }
+            preval = val;
+        }
+        return tot;
     }
-}
-
-class Dog extends Animal {
-    @Override
-    void makeSound() {
-        System.out.println("Dog barks");
-    }
-
-    void wagTail() { // Specific to Dog
-        System.out.println("Dog wags tail");
-    }
-}
-
-class Main {
     public static void main(String[] args) {
-        Animal obj1 = new Dog(); 
-        obj1.makeSound(); 
-        Dog obj2 = new Dog();
-        obj2.wagTail();
+        Scanner java = new Scanner(System.in);
+        String s = java.nextLine();
+        System.out.println(rom(s));
     }
 }
 
+//7. Reverse Integer
 
-
+class reverse {
+    static int reverse(int x) {
+        int i = 0, num = 0;
+        while(x!=0)
+            {
+                int digit = x%10;
+                x = x/10;
+                if(num>Integer.MAX_VALUE/10 || num==Integer.MAX_VALUE && digit>7)
+                {
+                    return 0;
+                }
+                if(num<Integer.MIN_VALUE/10 || num==Integer.MIN_VALUE && digit<-8)
+                {
+                    return 0;
+                }
+            }
+        return num;
+    }
+    public static void main(String[] args) {
+        System.out.println("Enter any number: ");
+        Scanner java = new Scanner(System.in);
+        int num = java.nextInt();
+        System.out.println(reverse(num));
+    }
+}

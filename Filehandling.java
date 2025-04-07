@@ -1,5 +1,6 @@
 import java.util.*;
 import java.io.*;
+import java.io.File;
 public class Filehandling
 {
     public static void main(String[]args)
@@ -632,5 +633,60 @@ class Fh22
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+}
+//Check the frequency of the words in the file and return the word with high frequency....
+class Fh23 {
+    public static void frequency(String filepath) {
+        try {
+            BufferedReader r = new BufferedReader(new FileReader(filepath));
+            String cont;
+            String[] word = new String[10];
+            int size = 0;
+
+            while ((cont = r.readLine()) != null) {
+                cont = cont.replaceAll("[^a-zA-Z0-9\\s]", "");
+                String[] arr = cont.split("\\s+");
+
+                for (String i : arr) {
+                    if (size == word.length) {
+                        word = Arrays.copyOf(word, word.length * 2);
+                    }
+                    word[size++] = i;
+                }
+            }
+            System.out.println(Arrays.toString(word));
+            r.close();
+
+            
+            int[] count = new int[size];
+            int maxcount = 0;
+            int max = 0;
+
+            for (int i = 0; i < size; i++) {
+                if (word[i] == null) continue;
+
+                for (int j = i + 1; j < size; j++) {
+                    if (word[j] != null && word[i].equalsIgnoreCase(word[j])) {
+                        word[j] = null; 
+                        count[i]++;
+                        if (maxcount < count[i]) {
+                            maxcount = count[i];
+                            max = i;
+                        }
+                    }
+                }
+            }
+
+            System.out.println("Most Frequent Word: " + word[max]);
+            System.out.println("Count: " + (count[max] + 1));
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void main(String[] args) {
+        frequency("D:\\Java\\File.txt");
     }
 }

@@ -437,7 +437,9 @@ class Car
     int year;
     public Car(String Make, String Model, int year)
     {
-
+        this.Make = Make;
+        this.Model = Model;
+        this.year = year;
     }
     public void Disdetails()
     {
