@@ -179,7 +179,7 @@ class Roman
 {
     static int rom(String s)
     {
-        HashMap<Character,Integer>r =new HashMap<>();
+        HashMap<Character, Integer>r =new HashMap<>();
         r.put('I',1);
         r.put('V',5);
         r.put('X',10);
@@ -188,21 +188,22 @@ class Roman
         r.put('D', 500);
         r.put('M', 1000);
         
-        int tot = 0;
-        int preval = 0;
+        int total = 0;
+        int pre = 0;
         for(int i = s.length()-1;i>=0;i--)
         {
             int val = r.get(s.charAt(i));
-            if(val<preval)
+            if(val<pre)
             {
-                tot-=val;
+                total -=val;
             }
-            else{
-                tot+=val;
+            else
+            {
+                total+=val;
             }
-            preval = val;
+            pre = val;
         }
-        return tot;
+        return total;
     }
     public static void main(String[] args) {
         Scanner java = new Scanner(System.in);
@@ -236,5 +237,51 @@ class reverse {
         Scanner java = new Scanner(System.in);
         int num = java.nextInt();
         System.out.println(reverse(num));
+    }
+}
+
+/*27. Remove Element
+Given an integer array nums and an integer val, remove all occurrences of val in nums in-place. The order of the elements may be changed. 
+Then return the number of elements in nums which are not equal to val.
+
+Consider the number of elements in nums which are not equal to val be k, to get accepted, you need to do the following things:
+
+Change the array nums such that the first k elements of nums contain the elements which are not equal to val. 
+The remaining elements of nums are not important as well as the size of nums.
+Return k.
+ */
+class remove
+{
+    public static int rem(int[]arr, int val)
+    {
+        int j = 0;
+        for(int i = 0;i<arr.length;i++)
+        {
+            if(arr[i] != val)
+            {
+                int temp = arr[j];
+                arr[j] = arr[i];
+                arr[i] = temp;
+                j++;
+            }
+            System.out.print(arr[j] + " ");
+        }
+       
+        return 0;
+    }
+    public static void main(String[] args) 
+    {
+        Scanner java = new Scanner(System.in);
+        System.out.println("Enter the size of the array: ");
+        int n = java.nextInt();
+        System.out.println("Enter the value to get remove: ");
+        int val = java.nextInt();
+        System.out.println("Enter the values for the array: ");
+        int[]arr = new int[n];
+        for(int i = 0;i<n;i++)
+        {
+            arr[i] = java.nextInt();
+        }
+        rem(arr, val);
     }
 }
