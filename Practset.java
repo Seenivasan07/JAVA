@@ -1,6 +1,6 @@
 import java.util.*;
 
-class Ps {
+class Practset {
     public static void main(String[]args)
     {
 
@@ -1310,7 +1310,7 @@ class Prog60
         int ind = 0;
         int size = (int)Math.ceil(Math.sqrt(str.length()));
         char[][]mat = new char[size][size];
-        
+
         for(int i = 0;i<mat.length && ind<str.length();i++)
         {
             for(int j = 0;j<mat[0].length && ind<str.length();j++)
