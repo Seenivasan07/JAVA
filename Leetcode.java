@@ -1,5 +1,5 @@
 import java.util.*;
-public class Leetcode
+class Leetcode
 {
     public static void main(String[]args)
     {
@@ -542,7 +542,154 @@ class pow
         }
 }
 
-//-----------------------------------------------------------------------------------leetcode-----------------------------------------------------------------------------
+//--------------------------------------------------------------------------------SPIRAL--------------------------------------------------------------------------------
+
+//54. SPIRAL MATRIX
+class SPIRAL
+{
+    static List<Integer> met(int[][] matrix)
+    {
+        List<Integer>list = new ArrayList<Integer>();
+        int minrow = 0, mincol = 0, maxrow = matrix.length -1, maxcol = matrix[0].length - 1;
+        int total = matrix.length * matrix[0].length;
+        int count = 0;
+        while(count<total)
+        {
+            for(int j = mincol;j<maxcol;j++)
+            {
+            list.add(matrix[minrow][j]);
+            count++;
+            }
+            for(int i = minrow;i<maxrow;i++)
+            {
+            list.add(matrix[i][maxcol]); 
+            count++;
+            } 
+            for(int j = maxcol;j>mincol;j--)
+            {
+            list.add(matrix[maxrow][j]);
+            count++;
+            }
+            for(int i = maxrow;i>minrow;i--)
+            {
+            list.add(matrix[i][mincol]);
+            count++;
+            }
+            minrow++;
+            mincol++;
+            maxrow--;
+            maxcol--;
+        } 
+        return list;      
+    }
+    public static void main(String[]args)
+    {
+        Scanner java = new Scanner(System.in);
+        System.out.println("Enter the size of the row: ");
+        int row = java.nextInt();
+        System.out.println("Enter the size of the column: ");
+        int col = java.nextInt();
+        int[][] matrix = new int[row][col];
+        System.out.println("Enter the values for the matrix: ");
+        for(int i = 0;i<row;i++)
+        {
+            for(int j = 0;j<col;j++)
+            {
+                matrix[i][j] = java.nextInt();
+            }
+        }
+        List<Integer> res = met(matrix);
+        System.out.print(res);
+    }
+}
+
+//--------------------------------------------------------------------------SLDING WINDOWS------------------------------------------------------------------------------
+
+//643. Maximum Average Subarray I
+class Solution {
+    public double findMaxAverage(int[] nums, int k) {
+     int sum=0;
+     for(int i=0;i<k;i++){
+        sum=sum + nums[i];
+     }   
+     int max = sum;
+     for(int j=k;j<nums.length;j++){
+        sum =sum + nums[j]-nums[j-k];
+        max = Math.max(sum,max);
+     }
+     return (double) max/k;
+    }
+}
+
+//1456. Maximum Number of Vowels in a Substring of Given Length
+class vowels {
+    public int maxVowels(String s, int k) {
+        int sum = 0;
+        int max = 0;
+        for(int i = 0;i<k;i++)
+        {
+            if(isvowel(s.charAt(i)))
+            {
+                sum++;
+            }
+        }
+        max = sum;
+        for(int i = k;i<s.length();i++)
+        {
+            if(isvowel(s.charAt(i-k)))
+            {
+                sum--;
+            }
+            if(isvowel(s.charAt(i)))
+            {
+                sum++;
+            }
+            if(sum>max)
+            {
+                max = sum;
+            }
+        }
+        return max;
+    }
+     public boolean isvowel(char c)
+        {
+            return c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u'||
+                   c == 'A' || c == 'E' || c == 'I' || c == 'O' || c == 'U';
+        }
+}
+
+//1343. Number of Sub-arrays of Size K and Average Greater than or Equal to Threshold
+class Threshold 
+{
+    static int numOfSubarrays(int[] arr, int k, int threshold) {
+        int sum = 0;
+        int count = 0;
+        for(int i = 0;i<k;i++)
+        {
+            sum+=arr[i];
+        }
+        if((sum/k)>=threshold)
+        {
+            count++;
+        }
+        for(int i = k;i<arr.length;i++)
+        {
+            sum+=arr[i] - arr[i-k];
+            if((sum/k)>=threshold)
+            {
+                count++;
+            }
+        }
+        return count;
+    }
+    public static void main(String[]args)
+    {
+        int[]arr = {2,2,2,2,5,5,5,8};
+        numOfSubarrays(arr, 3, 4);
+    }
+}
+
+//-----------------------------------------------------------------------------leetcode---------------------------------------------------------------------------------
 
 //796. Rotate String
 class Rotate
@@ -589,6 +736,76 @@ class Missing
     {
         int[]arr = {2,0,3};
         System.out.println(miss(arr));
+    }
+}
+
+
+//3. Longest Substring Without Repeating Characters
+
+class longsub {
+    static int Substring(String s) {
+    String str = "";
+    int count = 0;
+    for(int i = 0;i<s.length();i++)
+    {
+        if(str.contains(String.valueOf(s.charAt(i))))
+        {
+            count = Math.max(count, str.length());
+            str = String.valueOf(s.charAt(i));
+        }
+        else
+        {
+            str+=s.charAt(i);
+            System.out.println(str);
+        }
+    } 
+    return count;
+    }
+    public static void main(String[]args)
+    {
+        String s = "pwwkew";
+        System.out.println(Substring(s));
+    }
+}
+
+//17. Letter Combinations of a Phone Number
+class combination
+{
+    public static void main(String[]args)
+    {
+        
+        Scanner java = new Scanner(System.in);
+        System.out.println("Enter the digits: ");
+        String digits = java.nextLine();
+
+        if(digits.isEmpty())
+        {
+            System.out.println("[]");
+            return;
+        }
+
+        String[]phn = {"", "", "abc","def", "ghi","jkl","mno","pqrs","tuv","wxyz"};
+        List<String>list = new ArrayList<>();
+        bt(0, digits, list, "",phn);
+        System.out.println("The combinations are: ");
+        for(String str:list)
+        {
+            System.out.println(str);
+        }
+
+    }
+    static void bt(int index, String digits, List<String>list, String res, String[]phn)
+    {
+        if(res.length() == digits.length())
+        {
+            list.add(res);
+            return;
+        }
+        String words = phn[digits.charAt(index) - '0'];
+        for(char dig:words.toCharArray())
+        {
+            bt(index + 1, digits, list, res + dig, phn);
+        }
     }
 }
 
